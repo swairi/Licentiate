@@ -1,0 +1,174 @@
+%%=========================================================================%
+%%                               Settings                                  %
+%%=========================================================================%
+
+%Comment out or remove if it's a Licentiate thesis!
+\def\phdThesis{1}
+
+% Important commands for this thesis!
+\newcommand{\currentyear}{2018}
+\newcommand{\authorname}{Anders Andersson}
+\newcommand{\mytitle}{A Thesis on Computer Science}
+\newcommand{\mysubtitle}{With some subtitle if you want it} % Comment out if you don't want a subtitle
+
+\newcommand{\division}{Software Engineering}
+\newcommand{\researchgroup}{Some Research Group} % Comment out if not applicable
+
+
+%PHD ONLY
+\newcommand{\phdISBN}{xxx-xx-xxxx-xxx-x}
+\newcommand{\phdSeriesNumber}{xxxx}
+\newcommand{\techReportNumber}{XXXX}
+
+
+%==============%
+% Other common strings, these might need to be changed to follow updated guidelines
+
+\newcommand{\licISSN}{1652-876X}
+\newcommand{\phdISSN}{0346-718X}
+
+\newcommand{\chalmers}{Chalmers University of Technology}
+\newcommand{\gotuni}{University of Gothenburg}
+\newcommand{\mydepartment}{Department of Computer Science and Engineering}
+\newcommand{\chalIgu}{\chalmers~\IfItalicsTF{$|\!$}{$|$}~\gotuni} % The \! (negative thin space) is to fix kerning because italics seems to add extra space on the right of the inline math
+\newcommand{\chalandgu}{\chalmers~and~\gotuni}
+
+\ifx\phdThesis\undefined
+\newcommand{\degreetitle}{Licentiate of Engineering}
+\else
+\newcommand{\degreetitle}{Doctor of Philosophy}
+\fi
+
+
+\ifx\phdThesis\undefined
+%reportNo is not used for lic anymore, but double check with the intranet.
+%in case you need it just uncomment the text in the identifierNoText command.
+\newcommand{\identifierNoText}{%Technical Report No \techReportNumber \\
+ISSN \licISSN\\
+}
+\else
+\newcommand{\identifierNoText}{ISBN \phdISBN\\
+Doktorsavhandlingar vid Chalmers tekniska h\"{o}gskola, Ny serie nr \phdSeriesNumber .\\
+ISSN \phdISSN\\
+Technical Report No. \techReportNumber \\
+\vspace{1.5cm}
+}
+\fi
+
+
+
+
+%%=========================================================================%
+%%                               Settings                                  %
+%%=========================================================================%
+\setlength{\headheight}{14mm}
+
+% G5 format
+\usepackage{geometry}
+
+\ifx\inlagaPage\undefined
+% Thesis is paper size G5
+\geometry{paperwidth=169mm, paperheight=239mm, inner=28mm,outer=22mm,top=22mm, bottom=18mm}
+\else
+% Presentation sheet uses paper size A5
+\geometry{paperwidth=148mm, paperheight=210mm, inner=25mm,outer=25mm,top=22mm, bottom=18mm}
+\fi
+
+%-----------------------Used packages---------------------------------------------------------%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\scriptsize \slshape \leftmark}
+\fancyhead[LO]{\scriptsize \slshape \rightmark}
+\fancyfoot[C]{}
+
+\setcounter{secnumdepth}{3} \setcounter{tocdepth}{3}
+
+\usepackage[labelformat=simple]{subcaption}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{cite}
+% \usepackage{multibib}
+
+%\usepackage[english]{babel}
+\usepackage[british]{babel} % Using english will cause dates in the bibliography to be mm-dd-yyyy, instead of the more proper dd-mm-yyyy
+\usepackage[backend=bibtex,style=ieee,maxcitenames=3,backref=true,language=british]{biblatex} 
+%Different styles depending on whether you want numeric/alphabetic citation key
+% style=ieee
+% style=apa
+\addbibresource{references.bib}
+
+\usepackage{amsmath,amssymb,amscd,latexsym,dsfont}
+%\usepackage[latin1]{inputenc}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{latexsym}
+\usepackage{textcomp}
+% \usepackage{multirow}
+% \usepackage{multicol}
+\usepackage{psfrag}
+\usepackage{rotating}
+%\usepackage{xspace}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+
+
+\usepackage[final]{pdfpages}
+\usepackage{xspace}
+\usepackage{relsize}
+
+\usepackage{url}
+\usepackage{IEEEtrantools}
+
+% \usepackage{fixltx2e}
+
+\usepackage{microtype}
+
+\usepackage[textsize=tiny,textwidth=20mm,backgroundcolor=orange!70]{todonotes}
+\setlength{\marginparwidth}{20mm} % This is so the notes don't get cut out of the page
+
+
+
+%----------Some commands you can use-----------%
+
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\chapref}[1]{Chap.~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\eqnref}[1]{Equation~\ref{#1}}
+\newcommand{\paperref}[1]{Paper~\romannum{#1}}
+
+%use this command to denote figure element that appear inside a figure
+\newcommand{\fe}[1]{\textsf{\small #1}}
+
+\newcommand{\p}[1]{\textsf{\small #1}}
+
+\newcommand{\interviewquote}[2]{\begin{quote}
+\footnotesize{\emph{``#1'' }} --- \footnotesize{#2}
+\end{quote} }
+
+
+
+%----------Some commands we need-----------%
+
+\makeatletter
+\newcommand*{\IfItalicsTF}{%
+  \ifx\f@shape\my@test@it
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+}
+\newcommand*{\my@test@it}{it}
+\makeatother
+
+
+\newcommand{\romannum}[1]{{\uppercase\expandafter{\romannumeral #1\relax}}}
+
+\newcommand{\scalefactorOO}{0.45}
+
+%\linespread{1.0}
+% \newcites{ltex}{Appended Publications}
+%\addto\captionsenglish{\renewcommand{\figurename}{Fig.}}
